@@ -1,0 +1,12 @@
+cacheinfo
+
+usage:
+$> cacheinfo <level>
+
+level parameter specifies the cache level to be analysed:
+"1": L1 Data Cache
+"1i": L1 Instruction Cache
+"2": L2 Cache
+"3": L3 Cache (if exists)
+
+At this moment, the cache info is displayed in spanish.
