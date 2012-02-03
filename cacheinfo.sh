@@ -33,18 +33,12 @@ num_vias=$(cat ways_of_associativity)
 tam_total=$(cat size)
 # Tamaño de bloque (en bytes)
 tam_bloque=$(cat coherency_line_size)
-# Tamaño de palabra (en bytes)
-tam_palabra=$(uname -m)
 
 # Damos formato al tamaño total de la cache y al
 # tamaño de la palabra
 tam_total=`expr "$tam_total" : '\([0-9]*\)'`
 tam_total=$(expr $tam_total \* 1024)
-if [ "$tam_palabra" = "x86_64" ]; then
-	tam_palabra="8"
-else
-	tam_palabra="4"
-fi
+
 
 # Calculamos el resto de datos
 
@@ -66,18 +60,15 @@ clear
 echo "Caché de datos L"$1
 echo
 echo "Tamaño total: \t\t" $(expr $tam_total / 1024) "KB ("$tam_total "Bytes)"
-echo "Tamaño de palabra: \t" $(expr $tam_palabra \* 8) "bits ("$tam_palabra "Bytes)"
-echo "Número de conjuntos: \t" $num_conjuntos "conjuntos"
-echo "Número de vías: \t" $num_vias "vías"
+echo "Número de conjuntos: \t" $num_conjuntos "Conjuntos"
+echo "Número de vías: \t" $num_vias "Vías"
 echo "Tamaño de bloque: \t" $tam_bloque "Bytes"
 echo
-echo "Conjuntos por vía: \t" $conjuntos_via "Conjuntos/vía"
 echo "Bloques por vía: \t" $bloques_via "Bloques/vía"
 echo "Tamaño de conjunto: \t" $tam_conjunto "Bytes/conjunto"
-echo "Total de bloques: \t" $total_bloques "bloques"
+echo "Total de bloques: \t" $total_bloques "Bloques"
 echo "Bloques por conjunto: \t" $bloques_conjunto "Bloques/conjunto"
-echo "Palabras/bloque: \t" $palabras_bloque "Palabras/bloque"
 echo
 echo "C: "$num_conjuntos
-echo "L: "$bloques_conjunto
-echo "W: "$palabras_bloque
+echo "L: "$num_vias
+echo "W: "$tam_bloque
